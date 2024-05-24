@@ -14,14 +14,14 @@ fn handle_exit_command(command: &str) {
 }
 
 fn command(command &str) {
-	let echo_less_command = command.replace("echo", "");
+	let echo_less_command = command.replace("echo ", "");
 	println!("{echo_less_command}");
 }
 
 fn handle_matching(command: &str) {
 	match command {
 		x if x.to_string().contains("exit")  => handle_exit_command(&command),
-		x if x.to_string().contains("echo") => handle_echo_command(&command);
+		x if x.to_string().contains("echo") => handle_echo_command(&command),
 		_ => println!("{command}: command not found"),
 	}
 }
