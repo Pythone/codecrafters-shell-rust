@@ -2,7 +2,7 @@ use std::io::{self, Write};
 use std::process;
 
 
-fn handle_exit_command(command: &str;) {
+fn handle_exit_command(command: &str) {
 	if let Some(last_char) = command.chars().last() {
 		match last_char.to_string().parse::<i32>() {
 			Ok(status) => process::exit(status),
@@ -13,7 +13,7 @@ fn handle_exit_command(command: &str;) {
 	}
 }
 
-fn command(command &str;) {
+fn handle_echo_command(command: &str) {
 	let echo_less_command = command.replace("echo ", "");
 	println!("{echo_less_command}");
 }
