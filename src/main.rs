@@ -15,7 +15,7 @@ fn handle_exit_command(command: &str) {
 
 fn handle_matching(command: &str) {
 	match command {
-		x if x.to string().contains("exit")  => handle_exit_command(&command),
+		x if x.to_string().contains("exit")  => handle_exit_command(&command),
 		_ => println!("{command}: command not found"),
 	}
 }
