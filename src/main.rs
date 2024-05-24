@@ -9,13 +9,19 @@ fn handle_exit_command(command: &str) {
 			Err(e) => println!("Failed to parse the status code: {}", e),
 		}
 	} else {
-		println!("Failed to get last char of exit command(missing status code).");
+		print!("Failed to get last char of exit command(missing status code).");
 	}
+}
+
+fn command(command &str) {
+	let echo_less_command = commpand.replace("echo", "");
+	println!("{echo_less_command}");
 }
 
 fn handle_matching(command: &str) {
 	match command {
 		x if x.to_string().contains("exit")  => handle_exit_command(&command),
+		x if x.to_string().contains("echo") => handle_echo_command(&command);
 		_ => println!("{command}: command not found"),
 	}
 }
