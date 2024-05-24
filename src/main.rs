@@ -1,5 +1,24 @@
-#[allow(unused_imports)]
 use std::io::{self, Write};
+use std::process;
+
+
+fn handle_exit_command(command: &str) {
+	if let Some(last_char) = command.chars().last() {
+		match last_char.to_string().parse::<i32>() {
+			Ok(status) => process::exit(status),
+			Err(e) => println!("Failed to parse the status code: {}", e),
+		}
+	} else {
+		println!("Failed to get last char of exit command(missing status code).");
+	}
+}
+
+fn handle_matching(command: &str) {
+	match command {
+		x if x.to string.contains("exit") => handle_exit_command(&command),
+		_ => println!("{command}: command not found"),
+	}
+}
 
 fn main() {
     loop {
@@ -10,7 +29,6 @@ fn main() {
         let stdin = io::stdin();
         let mut input = String::new();
         stdin.read_line(&mut input).unwrap();
-        let command = input.trim();
-        println!("{command}: command not found");
+        handle_matching(input.trim());
     }
 }
