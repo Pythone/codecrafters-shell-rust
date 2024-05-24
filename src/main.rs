@@ -14,7 +14,7 @@ fn handle_exit_command(command: &str) {
 }
 
 fn command(command &str) {
-	let echo_less_command = commpand.replace("echo", "");
+	let echo_less_command = command.replace("echo", "");
 	println!("{echo_less_command}");
 }
 
