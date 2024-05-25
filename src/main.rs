@@ -40,6 +40,7 @@ fn handle_type_command(command: &str) {
 		println!("{typeless_command} not found");
 	}
 }
+}
 
 fn handle_matching(input: &str) {
 	if let Some(command) = Command::from_str(input.split_whitespace().next().unwrap()){
