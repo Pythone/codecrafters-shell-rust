@@ -84,7 +84,6 @@ fn handle_execution_or_unsupported(path: &str) {
 			println!("{path}: command not found");
 		}
 	} else{
-		println!("{path}: command not found");
 	}
 }
 fn handle_matching(input: &str) {
