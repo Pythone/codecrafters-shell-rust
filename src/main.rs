@@ -48,7 +48,6 @@ fn handle_matching(input: &str) {
 			Command::Type => handle_type_command(&input),
 			Command::Exit => handle_exit_command(&input),
 		}
-	}
 	}  else {
 		println!("{input}: command not found");
 }
