@@ -39,6 +39,7 @@ fn handle_type_command(command: &str) {
 		println!("{exec_command} is a shell builtin");
 	} else {
 		if let Some(_) = check_path_for_exec(&exec_command){
+			println!("{exec_command} not found");
 		}
 	}
 }
