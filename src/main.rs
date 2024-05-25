@@ -81,7 +81,6 @@ fn handle_execution_or_unsupported(path: &str) {
 		if std::path::Path::new(command[0]).exists() {
 			execute_binary(command[0], command[1])
 		} else {
-			println!("{path}: command not found");
 		}
 	} else{
 	}
