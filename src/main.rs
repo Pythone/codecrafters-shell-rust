@@ -76,7 +76,7 @@ fn execute_binary(path: &str, arg: &str) {
 }
 
 fn handle_execution_or_unsupported(path: &str) {
-	let command: Vec<&str> = split_whitespace().collect();
+	let command: Vec<&str> = path.split_whitespace().collect();
 	if command.len() >0 {
 		if std::path::Path::new(command[0]).exists() {
 			execute_binary(command[0], command[1])
