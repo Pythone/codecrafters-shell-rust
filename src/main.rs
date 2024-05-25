@@ -39,7 +39,6 @@ fn handle_type_command(command: &str) {
 		println!("{exec_command} is a shell builtin");
 	} else {
 		if let Some(_) = check_path_for_exec(&exec_command){
-			println!("{exec_command} not found");
 		}
 	}
 }
@@ -81,8 +80,10 @@ fn handle_execution_or_unsupported(path: &str) {
 		if std::path::Path::new(command[0]).exists() {
 			execute_binary(command[0], command[1])
 		} else {
+			println!("{path}: command not found");
 		}
 	} else{
+		println!("{path}: command not found");
 	}
 }
 fn handle_matching(input: &str) {
