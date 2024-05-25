@@ -53,6 +53,7 @@ fn check_path(executable: &str) -> bool {
 				return true;
 			}
 		}
+	}
 }
 false;
 fn handle_matching(input: &str) {
