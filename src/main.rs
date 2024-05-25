@@ -64,7 +64,7 @@ fn execute_binary(path: &str, arg: &str) {
 	match output {
 		Ok(output) => {
 			if output.status.success() {
-				io::stdout().write_all(&output.stdout.unwrap());
+				io::stdout().write_all(&output.stdout).unwrap());
 			} else {
 				println!("Command failed with exit code: {:?}", output.status.code());
 			}
