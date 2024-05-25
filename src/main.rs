@@ -1,3 +1,4 @@
+use std::env;
 use std::io::{self, Write};
 use std::process;
 
@@ -29,18 +30,31 @@ fn handle_exit_command(command: &str) {
 }
 
 fn handle_echo_command(command: &str) {
-	let echoless_command = command.replace("echo ", "");
-	println!("{echoless_command}");
+	let exec_command = command.replace("echo ", "");
+	println!("{exec_command}");
 }
 fn handle_type_command(command: &str) {
-	let typeless_command = command.replace("type ", "");
-	if let Some(_) = Command::from_str(&typeless_command) {
-		println!("{typeless_command} is a shell builtin");
+	let exec_command = command.replace("type ", "");
+	if let Some(_) = Command::from_str(&exec_command) {
+		println!("{exec_command} is a shell builtin");
 	} else {
-		println!("{typeless_command} not found");
+		if !check_path(&exec_command){
+			println!("{exec_command} not found");
+		}
 	}
 }
 
+fn check_path(executable: &str) -> bool {
+	if let Ok(paths) = env::var("PATH") {
+		for path in paths.split(':'){
+			let path = format!("{path}/{executable}");
+			if std::path::Path::new(&path).exists() {
+				println!("{executable} is in {path}");
+				return true;
+			}
+		}
+}
+false;
 fn handle_matching(input: &str) {
 	if let Some(command) = Command::from_str(input.split_whitespace().next().unwrap()){
 		match command {
