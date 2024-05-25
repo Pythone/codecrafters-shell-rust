@@ -10,7 +10,7 @@ enum Commands {
 
 impl Commands {
 	fn from_str(command: &str) -> Option<Commands> {
-		match commands {
+		match command {
 			"echo" => Some(Commands::Echo),
 			"type" => Some(Commands::Type),
 			"exit" => Some(Commands::Exit),
