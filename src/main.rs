@@ -1,7 +1,22 @@
 use std::io::{self, Write};
 use std::process;
 
+enum Command  {
+	Echo,
+	Type,
+	Exit,
+}
 
+impl Command {
+	fn from_str(command: &str) -> Option<Command> {
+		match command {
+			"echo" => Some(Command::Echo),
+			"type" => Some(Command::Type),
+			"exit" => Some(Command::Exit),
+			_ => None,
+		}
+	}
+}
 fn handle_exit_command(command: &str) {
 	if let Some(last_char) = command.chars().last() {
 		match last_char.to_string().parse::<i32>() {
@@ -14,16 +29,27 @@ fn handle_exit_command(command: &str) {
 }
 
 fn handle_echo_command(command: &str) {
-	let echo_less_command = command.replace("echo ", "");
-	println!("{echo_less_command}");
+	let echoless_command = command.replace("echo ", "");
+	println!("{echoless_command}");
+}
+fn handle_type_command(command: &str) {
+	let typeless_command = command.replace("type ", "");
+	if let Some(_) = Command::from_str(&typeless_command) {
+		println!("{typeless_command} is a shell builtin");
+	} else {
+		println!("{typeless_command} not found");
+	}
 }
 
-fn handle_matching(command: &str) {
-	match command {
-		x if x.to_string().contains("exit")  => handle_exit_command(&command),
-		x if x.to_string().contains("echo") => handle_echo_command(&command),
-		_ => println!("{command}: command not found"),
-	}
+fn handle_matching(input: &str) {
+	if let Some(command) = Command::from_str(input.split_whitespace().next().unwrap()){
+		match command {
+			Command::Echo => handle_echo_command(&input),
+			Command::Type => handle_type_command(&input),
+			Command::Exit => handle_exit_command(&input),
+		}
+	} else{
+		println!("{input}: command not found");
 }
 
 fn main() {
