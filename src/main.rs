@@ -54,8 +54,8 @@ fn check_path(executable: &str) -> bool {
 			}
 		}
 	}
+	false
 }
-false;
 fn handle_matching(input: &str) {
 	if let Some(command) = Command::from_str(input.split_whitespace().next().unwrap()){
 		match command {
