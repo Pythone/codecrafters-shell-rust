@@ -50,6 +50,7 @@ fn handle_matching(input: &str) {
 		}
 	}  else {
 		println!("{input}: command not found");
+	}
 }
 
 fn main() {
