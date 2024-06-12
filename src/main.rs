@@ -6,6 +6,7 @@ enum Commands {
 	Echo,
 	Type,
 	Exit,
+	Pwd,
 }
 
 impl Commands {
@@ -14,6 +15,7 @@ impl Commands {
 			"echo" => Some(Commands::Echo),
 			"type" => Some(Commands::Type),
 			"exit" => Some(Commands::Exit),
+			"pwd" => Some(Commands::Pwd),
 			_ => None,
 		}
 	}
@@ -43,6 +45,11 @@ fn handle_type_command(command: &str) {
 			println!("{exec_command} not found");
 		}
 	}
+}
+fn handle_pwd_command(command: &str){
+	let current_dir = env::current_dir().unwrap();
+	println!("{}", current_dir);
+	
 }
 
 fn check_path_for_exec(executable: &str) -> Option<String> {
@@ -94,6 +101,7 @@ fn handle_matching(input: &str) {
 			Commands::Echo => handle_echo_command(&input),
 			Commands::Type => handle_type_command(&input),
 			Commands::Exit => handle_exit_command(&input),
+			Commands::Pwd => handle_pwd_command(&input), 
 		}
 	}  else {
 		handle_execution_or_unsupported(input);
