@@ -46,7 +46,7 @@ fn handle_type_command(command: &str) {
 		}
 	}
 }
-fn handle_pwd_command(command: &str){
+fn handle_pwd_command(){
 	let current_dir = env::current_dir().unwrap();
 	println!("{}", current_dir.display());
 	
