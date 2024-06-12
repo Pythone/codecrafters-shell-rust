@@ -101,7 +101,7 @@ fn handle_matching(input: &str) {
 			Commands::Echo => handle_echo_command(&input),
 			Commands::Type => handle_type_command(&input),
 			Commands::Exit => handle_exit_command(&input),
-			Commands::Pwd => handle_pwd_command(&input), 
+			Commands::Pwd => handle_pwd_command(), 
 		}
 	}  else {
 		handle_execution_or_unsupported(input);
